@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE report PUBLIC "-//JACOCO//DTD Report 1.1//EN" "report.dtd">
+<report name="debug">
+    <sessioninfo id="localhost-d6ae6ab3" start="1659964478378" dump="1659964478411"/>
+    <sessioninfo id="localhost-edad251d" start="1659964487214" dump="1659964487268"/>
+    <sessioninfo id="localhost-a6ce546" start="1659964493527" dump="1659964493558"/>
+    <sessioninfo id="localhost-13dba0b4" start="1659964499358" dump="1659964499476"/>
+    <sessioninfo id="localhost-f03a9722" start="1659964505678" dump="1659964505749"/>
+    <sessioninfo id="localhost-3a9a7df4" start="1659964509282" dump="1659964509300"/>
+    <sessioninfo id="localhost-121298" start="1659964513253" dump="1659964513282"/>
+    <sessioninfo id="unknownhost-9cf11723" start="1659964516860" dump="1659964520780"/>
+    <sessioninfo id="unknownhost-9014232" start="1659964527786" dump="1659964535060"/>
+    <sessioninfo id="unknownhost-cc6ba472" start="1659964544628" dump="1659964549585"/>
+    <sessioninfo id="unknownhost-57ddf5d0" start="1659964557796" dump="1659964562698"/>
+    <sessioninfo id="unknownhost-169cf8ff" start="1659964573967" dump="1659964579955"/>
+    <sessioninfo id="unknownhost-e8bb34cf" start="1659964586492" dump="1659964591958"/>
+    <package name="com/example/android/testing/androidtestorchestratorsample">
+        <class name="com/example/android/testing/androidtestorchestratorsample/Calculator$Operator" sourcefilename="Calculator.java">
+            <method name="&lt;clinit&gt;" desc="()V" line="26">
+                <counter type="INSTRUCTION" missed="0" covered="44"/>
+                <counter type="LINE" missed="0" covered="1"/>
+                <counter type="COMPLEXITY" missed="0" covered="1"/>
+                <counter type="METHOD" missed="0" covered="1"/>
+            </method>
+            <counter type="INSTRUCTION" missed="0" covered="44"/>
+            <counter type="LINE" missed="0" covered="1"/>
+            <counter type="COMPLEXITY" missed="0" covered="1"/>
+            <counter type="METHOD" missed="0" covered="1"/>
+            <counter type="CLASS" missed="0" covered="1"/>
+        </class>
+        <class name="com/example/android/testing/androidtestorchestratorsample/Calculator" sourcefilename="Calculator.java">
+            <method name="&lt;init&gt;" desc="()V" line="24">
+                <counter type="INSTRUCTION" missed="0" covered="3"/>
+                <counter type="LINE" missed="0" covered="1"/>
+                <counter type="COMPLEXITY" missed="0" covered="1"/>
+                <counter type="METHOD" missed="0" covered="1"/>
+            </method>
+            <method name="add" desc="(DD)D" line="32">
+                <counter type="INSTRUCTION" missed="0" covered="4"/>
+                <counter type="LINE" missed="0" covered="1"/>
+                <counter type="COMPLEXITY" missed="0" covered="1"/>
+                <counter type="METHOD" missed="0" covered="1"/>
+            </method>
+            <method name="sub" desc="(DD)D" line="39">
+                <counter type="INSTRUCTION" missed="0" covered="4"/>
+                <counter type="LINE" missed="0" covered="1"/>
+                <counter type="COMPLEXITY" missed="0" covered="1"/>
+                <counter type="METHOD" missed="0" covered="1"/>
+            </method>
+            <method name="div" desc="(DD)D" line="46">
+                <counter type="INSTRUCTION" missed="0" covered="13"/>
+                <counter type="BRANCH" missed="0" covered="2"/>
+                <counter type="LINE" missed="0" covered="2"/>
+                <counter type="COMPLEXITY" missed="0" covered="2"/>
+                <counter type="METHOD" missed="0" covered="1"/>
+            </method>
+            <method name="mul" desc="(DD)D" line="55">
+                <counter type="INSTRUCTION" missed="0" covered="4"/>
+                <counter type="LINE" missed="0" covered="1"/>
+                <counter type="COMPLEXITY" missed="0" covered="1"/>
+                <counter type="METHOD" missed="0" covered="1"/>
+            </method>
+            <counter type="INSTRUCTION" missed="0" covered="28"/>
+            <counter type="BRANCH" missed="0" covered="2"/>
+            <counter type="LINE" missed="0" covered="6"/>
+            <counter type="COMPLEXITY" missed="0" covered="6"/>
+            <counter type="METHOD" missed="0" covered="5"/>
+            <counter type="CLASS" missed="0" covered="1"/>
+        </class>
+        <class name="com/example/android/testing/androidtestorchestratorsample/CalculatorActivity" sourcefilename="CalculatorActivity.java">
+            <method name="&lt;init&gt;" desc="()V" line="33">
+                <counter type="INSTRUCTION" missed="0" covered="3"/>
+                <counter type="LINE" missed="0" covered="1"/>
+                <counter type="COMPLEXITY" missed="0" covered="1"/>
+                <counter type="METHOD" missed="0" covered="1"/>
+            </method>
+            <method name="onCreate" desc="(Landroid/os/Bundle;)V" line="46">
+                <counter type="INSTRUCTION" missed="0" covered="30"/>
+                <counter type="LINE" missed="0" covered="7"/>
+                <counter type="COMPLEXITY" missed="0" covered="1"/>
+                <counter type="METHOD" missed="0" covered="1"/>
+            </method>
+            <method name="onAdd" desc="(Landroid/view/View;)V" line="58">
+                <counter type="INSTRUCTION" missed="0" covered="4"/>
+                <counter type="LINE" missed="0" covered="2"/>
+                <counter type="COMPLEXITY" missed="0" covered="1"/>
+                <counter type="METHOD" missed="0" covered="1"/>
+            </method>
+            <method name="onSub" desc="(Landroid/view/View;)V" line="65">
+                <counter type="INSTRUCTION" missed="0" covered="4"/>
+                <counter type="LINE" missed="0" covered="2"/>
+                <counter type="COMPLEXITY" missed="0" covered="1"/>
+                <counter type="METHOD" missed="0" covered="1"/>
+            </method>
+            <method name="onDiv" desc="(Landroid/view/View;)V" line="73">
+                <counter type="INSTRUCTION" missed="0" covered="17"/>
+                <counter type="LINE" missed="0" covered="6"/>
+                <counter type="COMPLEXITY" missed="0" covered="1"/>
+                <counter type="METHOD" missed="0" covered="1"/>
+            </method>
+            <method name="onMul" desc="(Landroid/view/View;)V" line="84">
+                <counter type="INSTRUCTION" missed="0" covered="4"/>
+                <counter type="LINE" missed="0" covered="2"/>
+                <counter type="COMPLEXITY" missed="0" covered="1"/>
+                <counter type="METHOD" missed="0" covered="1"/>
+            </method>
+            <method name="compute" desc="(Lcom/example/android/testing/androidtestorchestratorsample/Calculator$Operator;)V" line="91">
+                <counter type="INSTRUCTION" missed="4" covered="66"/>
+                <counter type="BRANCH" missed="1" covered="4"/>
+                <counter type="LINE" missed="1" covered="18"/>
+                <counter type="COMPLEXITY" missed="1" covered="4"/>
+                <counter type="METHOD" missed="0" covered="1"/>
+            </method>
+            <method name="getOperand" desc="(Landroid/widget/EditText;)Ljava/lang/Double;" line="124">
+                <counter type="INSTRUCTION" missed="0" covered="6"/>
+                <counter type="LINE" missed="0" covered="2"/>
+                <counter type="COMPLEXITY" missed="0" covered="1"/>
+                <counter type="METHOD" missed="0" covered="1"/>
+            </method>
+            <method name="getOperandText" desc="(Landroid/widget/EditText;)Ljava/lang/String;" line="132">
+                <counter type="INSTRUCTION" missed="0" covered="14"/>
+                <counter type="BRANCH" missed="0" covered="2"/>
+                <counter type="LINE" missed="0" covered="4"/>
+                <counter type="COMPLEXITY" missed="0" covered="2"/>
+                <counter type="METHOD" missed="0" covered="1"/>
+            </method>
+            <counter type="INSTRUCTION" missed="4" covered="148"/>
+            <counter type="BRANCH" missed="1" covered="6"/>
+            <counter type="LINE" missed="1" covered="44"/>
+            <counter type="COMPLEXITY" missed="1" covered="13"/>
+            <counter type="METHOD" missed="0" covered="9"/>
+            <counter type="CLASS" missed="0" covered="1"/>
+        </class>
+        <sourcefile name="Calculator.java">
+            <line nr="24" mi="0" ci="3" mb="0" cb="0"/>
+            <line nr="26" mi="0" ci="44" mb="0" cb="0"/>
+            <line nr="32" mi="0" ci="4" mb="0" cb="0"/>
+            <line nr="39" mi="0" ci="4" mb="0" cb="0"/>
+            <line nr="46" mi="0" ci="9" mb="0" cb="2"/>
+            <line nr="47" mi="0" ci="4" mb="0" cb="0"/>
+            <line nr="55" mi="0" ci="4" mb="0" cb="0"/>
+            <counter type="INSTRUCTION" missed="0" covered="72"/>
+            <counter type="BRANCH" missed="0" covered="2"/>
+            <counter type="LINE" missed="0" covered="7"/>
+            <counter type="COMPLEXITY" missed="0" covered="7"/>
+            <counter type="METHOD" missed="0" covered="6"/>
+            <counter type="CLASS" missed="0" covered="2"/>
+        </sourcefile>
+        <sourcefile name="CalculatorActivity.java">
+            <line nr="33" mi="0" ci="3" mb="0" cb="0"/>
+            <line nr="46" mi="0" ci="3" mb="0" cb="0"/>
+            <line nr="47" mi="0" ci="3" mb="0" cb="0"/>
+            <line nr="48" mi="0" ci="5" mb="0" cb="0"/>
+            <line nr="49" mi="0" ci="6" mb="0" cb="0"/>
+            <line nr="50" mi="0" ci="6" mb="0" cb="0"/>
+            <line nr="51" mi="0" ci="6" mb="0" cb="0"/>
+            <line nr="52" mi="0" ci="1" mb="0" cb="0"/>
+            <line nr="58" mi="0" ci="3" mb="0" cb="0"/>
+            <line nr="59" mi="0" ci="1" mb="0" cb="0"/>
+            <line nr="65" mi="0" ci="3" mb="0" cb="0"/>
+            <line nr="66" mi="0" ci="1" mb="0" cb="0"/>
+            <line nr="73" mi="0" ci="3" mb="0" cb="0"/>
+            <line nr="74" mi="0" ci="1" mb="0" cb="0"/>
+            <line nr="75" mi="0" ci="5" mb="0" cb="0"/>
+            <line nr="76" mi="0" ci="6" mb="0" cb="0"/>
+            <line nr="77" mi="0" ci="1" mb="0" cb="0"/>
+            <line nr="78" mi="0" ci="1" mb="0" cb="0"/>
+            <line nr="84" mi="0" ci="3" mb="0" cb="0"/>
+            <line nr="85" mi="0" ci="1" mb="0" cb="0"/>
+            <line nr="91" mi="0" ci="5" mb="0" cb="0"/>
+            <line nr="92" mi="0" ci="5" mb="0" cb="0"/>
+            <line nr="93" mi="0" ci="1" mb="0" cb="0"/>
+            <line nr="94" mi="0" ci="5" mb="0" cb="0"/>
+            <line nr="95" mi="0" ci="6" mb="0" cb="0"/>
+            <line nr="96" mi="0" ci="1" mb="0" cb="0"/>
+            <line nr="97" mi="0" ci="1" mb="0" cb="0"/>
+            <line nr="100" mi="0" ci="5" mb="1" cb="4"/>
+            <line nr="102" mi="0" ci="7" mb="0" cb="0"/>
+            <line nr="103" mi="0" ci="1" mb="0" cb="0"/>
+            <line nr="105" mi="0" ci="7" mb="0" cb="0"/>
+            <line nr="106" mi="0" ci="1" mb="0" cb="0"/>
+            <line nr="108" mi="0" ci="7" mb="0" cb="0"/>
+            <line nr="109" mi="0" ci="1" mb="0" cb="0"/>
+            <line nr="111" mi="0" ci="7" mb="0" cb="0"/>
+            <line nr="112" mi="0" ci="1" mb="0" cb="0"/>
+            <line nr="114" mi="4" ci="0" mb="0" cb="0"/>
+            <line nr="117" mi="0" ci="4" mb="0" cb="0"/>
+            <line nr="118" mi="0" ci="1" mb="0" cb="0"/>
+            <line nr="124" mi="0" ci="3" mb="0" cb="0"/>
+            <line nr="125" mi="0" ci="3" mb="0" cb="0"/>
+            <line nr="132" mi="0" ci="4" mb="0" cb="0"/>
+            <line nr="133" mi="0" ci="3" mb="0" cb="2"/>
+            <line nr="134" mi="0" ci="5" mb="0" cb="0"/>
+            <line nr="136" mi="0" ci="2" mb="0" cb="0"/>
+            <counter type="INSTRUCTION" missed="4" covered="148"/>
+            <counter type="BRANCH" missed="1" covered="6"/>
+            <counter type="LINE" missed="1" covered="44"/>
+            <counter type="COMPLEXITY" missed="1" covered="13"/>
+            <counter type="METHOD" missed="0" covered="9"/>
+            <counter type="CLASS" missed="0" covered="1"/>
+        </sourcefile>
+        <counter type="INSTRUCTION" missed="4" covered="220"/>
+        <counter type="BRANCH" missed="1" covered="8"/>
+        <counter type="LINE" missed="1" covered="51"/>
+        <counter type="COMPLEXITY" missed="1" covered="20"/>
+        <counter type="METHOD" missed="0" covered="15"/>
+        <counter type="CLASS" missed="0" covered="3"/>
+    </package>
+    <counter type="INSTRUCTION" missed="4" covered="220"/>
+    <counter type="BRANCH" missed="1" covered="8"/>
+    <counter type="LINE" missed="1" covered="51"/>
+    <counter type="COMPLEXITY" missed="1" covered="20"/>
+    <counter type="METHOD" missed="0" covered="15"/>
+    <counter type="CLASS" missed="0" covered="3"/>
+</report>

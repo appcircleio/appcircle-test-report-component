@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="com.example.android.testing.espresso.screenshotsample.ScreenshotJavaTest" tests="6" failures="0" errors="0" skipped="0" time="2.857" timestamp="2022-08-08T12:46:32" hostname="localhost">
+  <properties>
+    <property name="device" value="nexusOneApi30" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="saveDeviceScreenBitmap" classname="com.example.android.testing.espresso.screenshotsample.ScreenshotJavaTest" time="0.779" />
+  <testcase name="saveViewBitmap" classname="com.example.android.testing.espresso.screenshotsample.ScreenshotJavaTest" time="0.167" />
+  <testcase name="saveActivityBitmap" classname="com.example.android.testing.espresso.screenshotsample.ScreenshotJavaTest" time="0.198" />
+  <testcase name="saveDeviceScreenBitmap" classname="com.example.android.testing.espresso.screenshotsample.ScreenshotTest" time="0.163" />
+  <testcase name="saveViewBitmap" classname="com.example.android.testing.espresso.screenshotsample.ScreenshotTest" time="0.174" />
+  <testcase name="saveActivityBitmap" classname="com.example.android.testing.espresso.screenshotsample.ScreenshotTest" time="0.182" />
+</testsuite>
