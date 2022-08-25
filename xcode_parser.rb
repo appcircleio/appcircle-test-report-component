@@ -6,7 +6,7 @@ require 'pathname'
 require 'fileutils'
 
 class XcodeParser
-  def initialize(test_path,repo_path,output_path)
+  def initialize(test_path, repo_path, output_path)
     @test_path = test_path
     @repo_path = repo_path
     @output_path = output_path
@@ -83,8 +83,8 @@ class XcodeParser
                 testcase[:failure] = message
                 filename = location['fileName']['_value']
                 begin
-                  relative_path = Pathname.new((filename).to_s).relative_path_from(@repo_path).to_s
-                rescue
+                  relative_path = Pathname.new(filename.to_s).relative_path_from(@repo_path).to_s
+                rescue StandardError
                   relative_path = filename
                 end
                 testcase[:failure_location] = "#{relative_path}:#{location['lineNumber']['_value']}"
@@ -129,19 +129,22 @@ class XcodeParser
   end
 
   def parse
-  info_plist = (Pathname.new @test_path).join('Info.plist')
+    info_plist = (Pathname.new @test_path).join('Info.plist')
 
-  unless File.exist?(info_plist) && File.readable?(info_plist)
-    raise ArgumentError, "File #{info_plist} does not exist or is not readable"
-  end
+    unless File.exist?(info_plist) && File.readable?(info_plist)
+      raise ArgumentError, "File #{info_plist} does not exist or is not readable"
+    end
 
     results = get_object
 
     test_suites = results['actions']['_values']
                   .flat_map { |action| parse_actions(action) }
                   .compact
-
-    coverage = JSON.parse `xcrun xccov view --report --json #{@test_path}`
+    begin
+      coverage = JSON.parse `xcrun xccov view --report --json #{@test_path}`
+    rescue StandardError
+      coverage = {}
+    end
     { coverage: coverage, test_suites: test_suites }
   end
 end

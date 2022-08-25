@@ -48,6 +48,26 @@ describe XcodeParser do
       end
     end
 
+    context 'when given test result without coverage' do
+      it 'raise error' do
+        result = {}
+        test_path = 'spec/fixtures/nocoverage.xcresult'
+        repo_path = '/Volumes/agent-disk/agent-4/workflow_data/nhon31n3.fr1/_appcircle_temp/Repository'
+        output_path = 'tmp'
+        parser = XcodeParser.new(test_path, repo_path, output_path)
+        result = parser.parse
+        coverage = result[:coverage]
+        expect(coverage['coveredLines']).to eq(nil)
+        expect(coverage['executableLines']).to eq(nil)
+
+        test_suites = result[:test_suites]
+        expect(test_suites[0][:count]).to eq(2)
+        expect(test_suites[0][:failures]).to eq(0)
+        expect(test_suites[0][:errors]).to eq(0)
+        expect(test_suites[0][:device_name]).to eq('iPhone 8 Plus')
+      end
+    end
+
     context 'when given missing coverage file' do
       it 'raise error' do
         result = {}
