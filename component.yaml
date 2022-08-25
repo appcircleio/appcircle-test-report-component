@@ -1,6 +1,6 @@
 platform: Common
 buildPlatform:
-displayName: Test Report
+displayName: Test Reports
 description: Parse test and coverage results.
 inputs:
 - key: "AC_TEST_RESULT_PATH"
@@ -13,12 +13,12 @@ inputs:
   defaultValue: "$AC_COVERAGE_RESULT_PATH"
   isRequired: false
   title: Coverage result path
-  description: This environment variable is automatically set for iOS projects. For React Native and Flutter projects, you need to enter the coverage path.
+  description: This environment variable is automatically set for native iOS and Android projects. For React Native and Flutter projects, you need to enter the coverage path.
   helpText:
 outputs:
 - key: "AC_TEST_REPORT_JSON_PATH"
   title: Repository Directory
-  defaultValue: "AC_REPOSITORY_DIR"
+  defaultValue: "AC_TEST_REPORT_JSON_PATH"
   description: Specifies the path of JSON report.
   helpText:
 processFilename: ruby
