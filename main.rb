@@ -45,10 +45,10 @@ errors = 0
 skipped = 0
 
 if report[:test_suites]&.count&.positive?
-  count = report.test_suites.reduce(0) { |t, suite| t + suite[:count] }
-  failures = reporttest_suites.reduce(0) { |t, suite| t + suite[:failures] }
-  errors = test_suites.reduce(0) { |t, suite| t + suite[:errors] }
-  skipped = test_suites.reduce(0) { |t, suite| t + suite[:skipped] }
+  count = report[:test_suites].reduce(0) { |t, suite| t + suite[:count] }
+  failures = report[:test_suites].reduce(0) { |t, suite| t + suite[:failures] }
+  errors = report[:test_suites].reduce(0) { |t, suite| t + suite[:errors] }
+  skipped = report[:test_suites].reduce(0) { |t, suite| t + suite[:skipped] }
 
 end
 final_report = { coverage: report[:coverage],
