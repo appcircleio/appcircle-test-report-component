@@ -122,6 +122,7 @@ class XcodeParser
         suite[:count] = suite[:tests].size
         suite[:failures] = suite[:tests].count { |testcase| testcase[:failure] }
         suite[:errors] = suite[:tests].count { |testcase| testcase[:error] }
+        suite[:skipped] = suite[:tests].count {  |testcase| testcase[:status] == "Skipped" }
         test_suites << suite
       end
     end

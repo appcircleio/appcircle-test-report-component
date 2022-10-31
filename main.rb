@@ -39,8 +39,23 @@ else
   report = { coverage: coverage, test_suites: test_suites }
 end
 
+count = 0
+failures = 0
+errors = 0
+skipped = 0
+
+if report[:test_suites]&.count&.positive?
+  count = report.test_suites.reduce(0) { |t, suite| t + suite[:count] }
+  failures = reporttest_suites.reduce(0) { |t, suite| t + suite[:failures] }
+  errors = test_suites.reduce(0) { |t, suite| t + suite[:errors] }
+  skipped = test_suites.reduce(0) { |t, suite| t + suite[:skipped] }
+
+end
+final_report = { coverage: report[:coverage],
+                 test_suites: { count: count, failures: failures, errors: errors, skipped:skipped, suites: report[:test_suites] } }
+
 File.open("#{output_path}/test_results.json", 'w') do |f|
-  f.write(JSON.pretty_generate(report))
+  f.write(JSON.pretty_generate(final_report))
 end
 
 File.open(ENV['AC_ENV_FILE_PATH'], 'a') do |f|

@@ -21,6 +21,7 @@ describe XcodeParser do
         test_suites = result[:test_suites]
         expect(test_suites[0][:count]).to eq(2)
         expect(test_suites[0][:failures]).to eq(0)
+        expect(test_suites[0][:skipped]).to eq(0)
         expect(test_suites[0][:errors]).to eq(0)
         expect(test_suites[0][:device_name]).to eq('iPhone 8 Plus')
       end
@@ -43,6 +44,7 @@ describe XcodeParser do
         test_suites = result[:test_suites]
         expect(test_suites[0][:count]).to eq(4)
         expect(test_suites[0][:failures]).to eq(1)
+        expect(test_suites[0][:skipped]).to eq(1)
         expect(test_suites[0][:errors]).to eq(0)
         expect(test_suites[0][:device_name]).to eq('iPod touch (7th generation)')
       end
