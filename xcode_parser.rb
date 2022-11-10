@@ -71,7 +71,7 @@ class XcodeParser
           tests.each do |test|
             duration = 0
             duration = test['duration']['_value'] if test['duration']
-            testcase = { name: test['name']['_value'], time: duration, attachments: [],
+            testcase = { name: test['name']['_value'], time: duration.to_f, attachments: [],
                          status: test['testStatus']['_value'] }
             if test['testStatus']['_value'] == 'Failure'
               failures = get_object(test['summaryRef']['id']['_value'])['failureSummaries']['_values']
@@ -122,6 +122,7 @@ class XcodeParser
         suite[:count] = suite[:tests].size
         suite[:failures] = suite[:tests].count { |testcase| testcase[:failure] }
         suite[:errors] = suite[:tests].count { |testcase| testcase[:error] }
+        suite[:time] = suite[:tests].sum { |testcase| testcase[:time]}
         suite[:skipped] = suite[:tests].count {  |testcase| testcase[:status] == "Skipped" }
         test_suites << suite
       end

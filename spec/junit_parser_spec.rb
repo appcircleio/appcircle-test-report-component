@@ -12,6 +12,7 @@ describe JunitParser do
         expect(result[0][:failures]).to eq(0)
         expect(result[0][:errors]).to eq(0)
         expect(result[0][:skipped]).to eq(0)
+        expect(result[0][:time]).to eq(2.857)
         expect(result[0][:device_name]).to eq('nexusOneApi30')
       end
     end

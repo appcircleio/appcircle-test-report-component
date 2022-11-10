@@ -23,6 +23,7 @@ describe XcodeParser do
         expect(test_suites[0][:failures]).to eq(0)
         expect(test_suites[0][:skipped]).to eq(0)
         expect(test_suites[0][:errors]).to eq(0)
+        expect(test_suites[0][:time]).to eq(0.28133511543273926)
         expect(test_suites[0][:device_name]).to eq('iPhone 8 Plus')
       end
     end
