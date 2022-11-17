@@ -20,16 +20,15 @@ class CoverageParser
     doc = Nokogiri::XML(File.read(xml))
     internal_subset = doc.internal_subset
     if internal_subset.external_id =~ /JACOCO/
-        puts "Parsing JaCoCo report #{xml}"
-        JacocoParser.parse(xml)
+      puts "Parsing JaCoCo report #{xml}"
+      JacocoParser.parse(xml)
     elsif internal_subset.system_id =~ /cobertura/
-        puts "Parsing Cobetura report #{xml}"
-        CoberturaParser.parse(xml)
+      puts "Parsing Cobetura report #{xml}"
+      CoberturaParser.parse(xml)
     end
-
-
   end
-  def parse_files
+
+  def parse
     result = []
     @path.split(':').each do |directory|
       puts "Searching #{directory} for coverage files..."
@@ -37,17 +36,30 @@ class CoverageParser
         extension = File.extname(file)
         case extension
         when '.xml'
-           result << parse_xml(file)
+          result << parse_xml(file)
         when '.info'
-            puts "Parsing Lcov.info report #{file}"
-           result << LcovParser.parse(file)
+          puts "Parsing Lcov.info report #{file}"
+          result << LcovParser.parse(file)
         end
       end
     end
-    result.flatten(1)
-  end
 
-  def parse
-    parse_files
+    coveredLines = 0
+    executableLines = 0
+    lineCoverage = 0
+    targets = []
+    unless result.empty?
+      targets = result.map { |item| item[:targets] }.flatten
+      coveredLines = result.reduce(0) { |sum, obj| sum + obj[:coveredLines] }
+      executableLines = result.reduce(0) { |sum, obj| sum + obj[:executableLines] }
+      lineCoverage = coveredLines.to_f / executableLines
+    end
+
+    {
+      targets: targets,
+      coveredLines: coveredLines,
+      executableLines: executableLines,
+      lineCoverage: lineCoverage
+    }
   end
 end
