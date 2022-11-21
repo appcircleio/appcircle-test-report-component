@@ -32,13 +32,23 @@ class JunitParser
       }
 
       test_suite.xpath('testcase').each do |test_case|
+        skipped = test_case.at_xpath('skipped') ? true : nil
+        failure =  test_case.at_xpath('failure') ? test_case.at_xpath('failure').text : nil
+        error =  test_case.at_xpath('error') ? test_case.at_xpath('error').text : nil
+        status = "Success"
+        if skipped
+          status = "Skipped"
+        end
+        if failure
+          status = "Failure"
+        end
         suite[:tests] << {
           name: test_case['name'],
           time: test_case['time'].to_f,
           classname: test_case['classname'],
-          failure: test_case.at_xpath('failure') ? test_case.at_xpath('failure').text : nil,
-          error: test_case.at_xpath('error') ? test_case.at_xpath('error').text : nil,
-          skipped: test_case.at_xpath('skipped') ? test_case.at_xpath('skipped').text : nil
+          status: status,
+          failure: failure,
+          error: error,
         }
       end
       test_suites << suite

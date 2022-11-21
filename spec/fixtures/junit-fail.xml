@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="at.woodstick.mysampleapplication.ExampleInstrumentedTest" tests="6" failures="1" errors="0" skipped="1" time="3.2" timestamp="2017-11-03T10:27:00" hostname="localhost">
+<properties>
+    <property name="device" value="Nexus_5X_API_26(AVD) - 8.0.0" />
+    <property name="flavor" value="" />
+    <property name="project" value="testLibraryPit" />
+  </properties> 
+  <testcase name="useAppContext" classname="at.woodstick.mysampleapplication.ExampleInstrumentedTest" time="0.0" />
+  <testcase name="typeText_click_InitiatesActivity" classname="at.woodstick.mysampleapplication.espresso.DisplayMessageActivityTest" time="0.428" />
+  <testcase name="typeNoText_click_InitiatesActivity" classname="at.woodstick.mysampleapplication.espresso.GSampleActivityTest" time="1.258" />
+  <testcase name="typeText_click_InitiatesActivity" classname="at.woodstick.mysampleapplication.espresso.GSampleActivityTest" time="1.956" />
+  <testcase name="mainButton_click_InitiatesActivity" classname="at.woodstick.mysampleapplication.espresso.MainActivityTest" time="0.305">
+    <failure>android.util.SuperNotCalledException: Activity {at.woodstick.mysampleapplication/at.woodstick.mysampleapplication.MainActivity} did not call through to super.onCreate()
+at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:2773)
+at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:2892)
+at android.app.ActivityThread.-wrap11(Unknown Source:0)
+at android.app.ActivityThread$H.handleMessage(ActivityThread.java:1593)
+at android.os.Handler.dispatchMessage(Handler.java:105)
+at android.os.Looper.loop(Looper.java:164)
+at android.app.ActivityThread.main(ActivityThread.java:6541)
+at java.lang.reflect.Method.invoke(Native Method)
+at com.android.internal.os.Zygote$MethodAndArgsCaller.run(Zygote.java:240)
+at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:767)
+</failure>
+  </testcase>
+ <testcase name="fail_test" classname="at.woodstick.mysampleapplication.espresso.MainActivityTest" time="0.0">
+    <skipped />
+  </testcase>
+</testsuite>

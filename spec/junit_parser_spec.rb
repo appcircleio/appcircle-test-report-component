@@ -17,6 +17,20 @@ describe JunitParser do
       end
     end
 
+    context 'when given skipped and falure cases file' do
+      it 'covered lines is 0' do
+        result = JunitParser.parse('spec/fixtures/junit-fail.xml')
+        expect(result.count).to eq(1)
+        expect(result[0][:count]).to eq(6)
+        expect(result[0][:failures]).to eq(1)
+        expect(result[0][:tests][4][:status]).to eq("Failure")
+        expect(result[0][:errors]).to eq(0)
+        expect(result[0][:skipped]).to eq(1)
+        expect(result[0][:time]).to eq(3.2)
+        expect(result[0][:device_name]).to eq('Nexus_5X_API_26(AVD) - 8.0.0')
+      end
+    end
+
     context 'when given an invalid coverage file' do
       it 'covered lines is 0' do
         result = {}
