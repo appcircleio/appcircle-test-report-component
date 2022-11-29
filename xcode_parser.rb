@@ -77,7 +77,12 @@ class XcodeParser
               failures = get_object(test['summaryRef']['id']['_value'])['failureSummaries']['_values']
 
               message = failures.map { |failure| failure['message']['_value'] }.join("\n")
+              error_messages = failures.select{ |failure| failure['fileName']}
+              if error_messages.count > 0
               location = failures.reject { |failure| failure['fileName']['_value'] == '<unknown>' }.first
+              else
+                location = nil
+              end
 
               if location
                 testcase[:failure] = message

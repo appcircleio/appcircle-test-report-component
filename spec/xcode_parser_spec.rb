@@ -51,6 +51,25 @@ describe XcodeParser do
       end
     end
 
+    context 'when given error test file' do
+      it 'raise error' do
+        result = {}
+        test_path = 'spec/fixtures/error.xcresult'
+        repo_path = '/Users/mustafa/Desktop/NSISTANBUL2022'
+        output_path = 'tmp'
+        parser = XcodeParser.new(test_path, repo_path, output_path)
+        result = parser.parse
+        coverage = result[:coverage]
+        expect(coverage['coveredLines']).to eq(nil)
+        test_suites = result[:test_suites]
+        expect(test_suites[0][:count]).to eq(1)
+        expect(test_suites[0][:failures]).to eq(0)
+        expect(test_suites[0][:skipped]).to eq(0)
+        expect(test_suites[0][:errors]).to eq(1)
+        expect(test_suites[0][:device_name]).to eq('iPhone 8 Plus')
+      end
+    end
+
     context 'when given test result without coverage' do
       it 'raise error' do
         result = {}
