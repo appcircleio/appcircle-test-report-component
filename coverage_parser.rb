@@ -17,12 +17,13 @@ class CoverageParser
 
   # Detect type of file
   def parse_xml(xml)
+    puts("Checking #{xml}")
     doc = Nokogiri::XML(File.read(xml))
     internal_subset = doc.internal_subset
-    if internal_subset.external_id =~ /JACOCO/
+    if defined?(internal_subset.external_id) && internal_subset.external_id =~ /JACOCO/
       puts "Parsing JaCoCo report #{xml}"
       JacocoParser.parse(xml)
-    elsif internal_subset.system_id =~ /cobertura/
+    elsif defined?(internal_subset.system_id) && internal_subset.system_id =~ /cobertura/
       puts "Parsing Cobetura report #{xml}"
       CoberturaParser.parse(xml)
     end
@@ -48,6 +49,7 @@ class CoverageParser
     executableLines = 0
     lineCoverage = 0
     targets = []
+    result = result.compact
     unless result.empty?
       targets = result.map { |item| item[:targets] }.flatten
       coveredLines = result.reduce(0) { |sum, obj| sum + obj[:coveredLines] }
