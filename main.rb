@@ -18,8 +18,16 @@ if platform == 'ObjectiveCSwift'
   if test_path.nil? || test_path.empty?
     puts 'No test path given'
   else
-    parser = XcodeParser.new(test_path, repo_path, output_path)
-    report = parser.parse
+    begin
+      parser = XcodeParser.new(test_path, repo_path, output_path)
+      report = parser.parse  
+    rescue StandardError
+      # It means User gave JUnit XML
+      test_parser = TestParser.new(test_path)
+      test_suites = test_parser.parse
+      report = { coverage: {}, test_suites: test_suites }
+    end
+
   end
 else
   test_suites = {}
