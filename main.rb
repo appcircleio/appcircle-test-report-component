@@ -10,6 +10,7 @@ platform = ENV['AC_PLATFORM_TYPE']
 output_path = ENV['AC_OUTPUT_DIR']
 test_path = ENV['AC_TEST_RESULT_PATH']
 coverage_path = ENV['AC_COVERAGE_RESULT_PATH']
+coverage_type = ENV['AC_JACOCO_COVERAGE_TYPE']
 
 puts "Platform #{platform}"
 report = {}
@@ -41,7 +42,7 @@ else
   if coverage_path.nil? || coverage_path.empty?
     puts 'No coverage path given'
   else
-    coverage_parser = CoverageParser.new(coverage_path)
+    coverage_parser = CoverageParser.new(coverage_path, coverage_type)
     coverage = coverage_parser.parse
   end
   report = { coverage: coverage, test_suites: test_suites }

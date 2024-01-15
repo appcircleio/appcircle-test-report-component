@@ -11,8 +11,9 @@ require_relative 'lcov_parser'
 
 # Parse coverage results
 class CoverageParser
-  def initialize(path)
+  def initialize(path, coverage_type)
     @path = path
+    @coverage_type = coverage_type
   end
 
   # Detect type of file
@@ -22,7 +23,7 @@ class CoverageParser
     internal_subset = doc.internal_subset
     if defined?(internal_subset.external_id) && internal_subset.external_id =~ /JACOCO/
       puts "Parsing JaCoCo report #{xml}"
-      JacocoParser.parse(xml)
+      JacocoParser.parse(xml, @coverage_type)
     elsif defined?(internal_subset.system_id) && internal_subset.system_id =~ /cobertura/
       puts "Parsing Cobetura report #{xml}"
       CoberturaParser.parse(xml)
