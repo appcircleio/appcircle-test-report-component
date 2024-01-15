@@ -65,7 +65,7 @@ class JacocoParser
         coverage[:targets] << target
       end
     end
-    coverage
     puts "Total Coverage Percentage according to Coverage Type #{coverage_type}: #{(coverage[:lineCoverage] * 100).round(2)}%"
+    coverage
   end
 end
