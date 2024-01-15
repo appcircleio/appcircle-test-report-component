@@ -10,7 +10,7 @@ platform = ENV['AC_PLATFORM_TYPE']
 output_path = ENV['AC_OUTPUT_DIR']
 test_path = ENV['AC_TEST_RESULT_PATH']
 coverage_path = ENV['AC_COVERAGE_RESULT_PATH']
-coverage_type = ENV['AC_JACOCO_COVERAGE_TYPE']
+
 
 puts "Platform #{platform}"
 report = {}
@@ -31,6 +31,7 @@ if platform == 'ObjectiveCSwift'
 
   end
 else
+  coverage_type = ENV['AC_JACOCO_COVERAGE_TYPE']
   test_suites = {}
   coverage = {}
   if test_path.nil? || test_path.empty?
