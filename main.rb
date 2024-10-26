@@ -7,11 +7,9 @@ require_relative 'xcode_parser'
 
 repo_path = ENV['AC_REPOSITORY_DIR']
 platform = ENV['AC_PLATFORM_TYPE']
-#output_path = ENV['AC_OUTPUT_DIR']
-#test_path = ENV['AC_TEST_RESULT_PATH']
+output_path = ENV['AC_OUTPUT_DIR']
+test_path = ENV['AC_TEST_RESULT_PATH']
 coverage_path = ENV['AC_COVERAGE_RESULT_PATH']
-test_path = "/Users/burakoztopuz/Desktop/TOGGTestResults"
-output_path = "/Users/burakoztopuz/Desktop"
 
 puts "Platform #{platform}"
 report = {}
