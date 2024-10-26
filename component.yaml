@@ -40,3 +40,4 @@ files:
 - "lcov_parser.rb"
 - "test_parser.rb"
 - "xcode_parser.rb"
+- "cucumber_parser.rb"
