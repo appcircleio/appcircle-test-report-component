@@ -42,7 +42,9 @@ class TestParser
   end
 
   def parse
-    find_junits
-    find_cucumber_json
+    junit_results = find_junits
+    cucumber_results = find_cucumber_json
+
+    { junit: junit_results, cucumber: cucumber_results }
   end
 end
