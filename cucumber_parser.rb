@@ -13,7 +13,7 @@ class CucumberParser
 
     file_content = File.read(json_file)
     json_data = JSON.parse(file_content)
-    scenario = []
+    test_suites = []
 
     json_data.each do |feature|
       feature['elements'].each do |element|
@@ -33,9 +33,9 @@ class CucumberParser
           }
           scenario[:steps] << step_data
         end
-        scenario << scenario
+        test_suites << scenario
       end
     end
-    scenario
+    test_suites
   end
 end
