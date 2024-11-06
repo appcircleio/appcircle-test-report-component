@@ -25,6 +25,7 @@ if platform == 'ObjectiveCSwift'
       # It means User gave JUnit XML
       test_parser = TestParser.new(test_path)
       test_suites = test_parser.parse
+      report = { coverage: {}, test_suites: test_suites }
     end
 
   end
@@ -53,21 +54,12 @@ errors = 0
 skipped = 0
 time = 0
 
-if report[:test_suites]&.is_a?(Array) && report[:test_suites].count.positive?
-  count = report[:test_suites].reduce(0) { |t, suite| t + (suite[:count] || 0) }
-  failures = report[:test_suites].reduce(0) { |t, suite| t + (suite[:failures] || 0) }
-  errors = report[:test_suites].reduce(0) { |t, suite| t + (suite[:errors] || 0) }
-  skipped = report[:test_suites].reduce(0) { |t, suite| t + (suite[:skipped] || 0) }
-  time = report[:test_suites].reduce(0) { |t, suite| t + (suite[:time] || 0.0) }
-elsif report[:test_suites].is_a?(Hash)
-  count = report[:test_suites][:count] || 0
-  failures = report[:test_suites][:failures] || 0
-  errors = report[:test_suites][:errors] || 0
-  skipped = report[:test_suites][:skipped] || 0
-  time = report[:test_suites][:time] || 0.0
-else
-  count = failures = errors = skipped = 0
-  time = 0.0
+if report[:test_suites]&.count&.positive?
+    count = report[:test_suites].reduce(0) { |t, suite| t + suite[:count] }
+    failures = report[:test_suites].reduce(0) { |t, suite| t + suite[:failures] }
+    errors = report[:test_suites].reduce(0) { |t, suite| t + suite[:errors] }
+    skipped = report[:test_suites].reduce(0) { |t, suite| t + suite[:skipped] }
+    time = report[:test_suites].reduce(0) { |t, suite| t + suite[:time] }
 end
 final_report = { coverage: report[:coverage],
                  test_suites: { count: count, failures: failures, errors: errors, skipped:skipped, time:time, suites: report[:test_suites] } }
