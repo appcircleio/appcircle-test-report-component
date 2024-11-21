@@ -45,11 +45,14 @@ class LcovParser
                         executableLines: 0,
                         lineCoverage: 0,
                         functions: [] }
-        target[:name] = Regexp.last_match(1).strip.empty? ? "No Name" : Regexp.last_match(1).strip
+        tn_value = Regexp.last_match(1).strip
+        target[:name] = tn_value.empty? ? "No Name" : tn_value
 
       when /^SF:(.+)/ # Source file
         current_filename = $LAST_MATCH_INFO[1].gsub(%r{^\./}, "")
+        file_name_only = File.basename(current_filename)
         target_file[:name] = current_filename
+        target[:name] = current_filename if target[:name] == "No Name"
       when /^LF:(\d+)/ # Line execution count
         total = $LAST_MATCH_INFO[1]
         target_file[:executableLines] = total.to_i
