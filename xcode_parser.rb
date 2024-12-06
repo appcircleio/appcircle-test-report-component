@@ -19,22 +19,27 @@ class XcodeParser
     output
   end
 
+  @@xcode_version = nil
   def get_xcode_version
-    output = execute_cmd("xcodebuild -version")
-    xcode_version = output.match(/Xcode (\d+(\.\d+)?)/)[1]
-    return xcode_version.to_f
+    @@xcode_version ||= begin
+      output = execute_cmd("xcodebuild -version")
+      output.match(/Xcode (\d+(\.\d+)?)/)[1].to_f + 1
+    end
+  end
+
+  def get_xcrun_command(cmd_func, id: nil, filename: nil, output_path: nil)
+    cmd = "xcrun xcresulttool #{cmd_func} object --path #{@test_path}"
+    cmd += " object --legacy"  if get_xcode_version >= 16.0
+    cmd += " --id #{id}" if id
+    cmd += " --format json" if cmd_func == "get"
+    cmd += " --output-path '#{output_path}' --type file" if output_path
+    cmd
   end
 
   def get_object(id = nil)
-    selected_xcode_version = get_xcode_version
-    if selected_xcode_version >= 16.0
-        cmd = "xcrun xcresulttool get object --legacy --format json --path #{@test_path}"
-    else
-        cmd = "xcrun xcresulttool get --format json --path #{@test_path}"
-    end
-    cmd += " --id #{id}" if id
+    cmd = get_xcrun_command("get", id: id)
     raw_result = execute_cmd(cmd)
-    JSON.parse raw_result
+    JSON.parse(raw_result)
   end
 
   def extract_attachment(filename, id)
@@ -42,12 +47,7 @@ class XcodeParser
     FileUtils.mkdir_p(attachments_path) unless Dir.exist?(attachments_path)
     output_path = File.join(attachments_path, filename)
     puts "Exporting attachment #{filename}"
-    selected_xcode_version = get_xcode_version
-    if selected_xcode_version >= 16.0
-      cmd = "xcrun xcresulttool export object --legacy --path #{@test_path} --id '#{id}' --output-path '#{output_path}' --type file"
-    else
-      cmd = "xcrun xcresulttool export --path #{@test_path} --id '#{id}' --output-path '#{output_path}' --type file"
-    end
+    cmd = get_xcrun_command("export", id: id, output_path: output_path)
     execute_cmd(cmd)
   end
 
