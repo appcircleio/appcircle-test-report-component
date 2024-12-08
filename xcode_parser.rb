@@ -23,7 +23,7 @@ class XcodeParser
   def get_xcode_version
     @@xcode_version ||= begin
       output = execute_cmd("xcodebuild -version")
-      output.match(/Xcode (\d+(\.\d+)?)/)[1].to_f + 1
+      output.match(/Xcode (\d+(\.\d+)?)/)[1].to_f
     end
   end
 
