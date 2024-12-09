@@ -50,9 +50,8 @@ class LcovParser
 
       when /^SF:(.+)/ # Source file
         current_filename = $LAST_MATCH_INFO[1].gsub(%r{^\./}, "")
-        file_name_only = File.basename(current_filename)
         target_file[:name] = current_filename
-        target[:name] = file_name_only if target[:name] == "No Name"
+        target[:name] = File.basename(current_filename) if target[:name] == "No Name"
       when /^LF:(\d+)/ # Line execution count
         total = $LAST_MATCH_INFO[1]
         target_file[:executableLines] = total.to_i
