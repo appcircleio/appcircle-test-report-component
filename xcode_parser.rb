@@ -29,7 +29,8 @@ class XcodeParser
 
   def get_xcrun_command(cmd_func, id: nil, filename: nil, output_path: nil)
     cmd = "xcrun xcresulttool #{cmd_func}"
-    cmd += " object --legacy"  if get_xcode_version >= 16.0
+    cmd += " object" if get_xcode_version >= 15.1
+    cmd += " --legacy"  if get_xcode_version >= 16.0
     cmd += " --format json" if cmd_func == "get"
     cmd += " --path #{@test_path}"
     cmd += " --id #{id}" if id
