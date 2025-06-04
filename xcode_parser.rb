@@ -65,13 +65,15 @@ class XcodeParser
 
     test_suites = []
 
-    tests['summaries']['_values'][0]['testableSummaries']['_values'].each do |target|
+    testable_summaries = tests.dig('summaries', '_values', 0, 'testableSummaries', '_values')
+    return [] unless testable_summaries
+    testable_summaries.each do |target|
       target_name = target['targetName']['_value']
 
       # if the test target failed to launch at all, get first failure message
       unless target['tests']
-        failure_summary = target['failureSummaries']['_values'][0]
-        test_suites << { name: target_name, error: failure_summary['message']['_value'] }
+        failure_summary = target.dig('failureSummaries', '_values', 0, 'message', '_value')
+        test_suites << { name: target_name, error: failure_summary || 'Unknown failure' }
         next
       end
 
@@ -79,7 +81,9 @@ class XcodeParser
 
       # else process the test classes in each target
       # first two levels are just summaries, so skip those
-      test_classes[0]['subtests']['_values'][0]['subtests']['_values'].each do |test_class|
+      class_values = test_classes.dig(0, 'subtests', '_values', 0, 'subtests', '_values')
+      next unless class_values
+      class_values.each do |test_class|
         suite = { name: "#{target_name}.#{test_class['name']['_value']}", tests: [], device_name: device_name }
         # process the tests in each test class
         tests = test_class.dig('subtests', '_values')
@@ -91,15 +95,9 @@ class XcodeParser
             testcase = { name: test['name']['_value'], time: duration.to_f, attachments: [],
                          status: test['testStatus']['_value'] }
             if test['testStatus']['_value'] == 'Failure'
-              failures = get_object(test['summaryRef']['id']['_value'])['failureSummaries']['_values']
-
-              message = failures.map { |failure| failure['message']['_value'] }.join("\n")
-              error_messages = failures.select{ |failure| failure['fileName']}
-              if error_messages.count > 0
-              location = failures.reject { |failure| failure['fileName']['_value'] == '<unknown>' }.first
-              else
-                location = nil
-              end
+              failures = get_object(test.dig('summaryRef', 'id', '_value')).dig('failureSummaries', '_values') || []
+              message = failures.map { |failure| failure.dig('message', '_value') }.compact.join("\n")
+              location = failures.find { |failure| failure.dig('fileName', '_value') && failure['fileName']['_value'] != '<unknown>' }
 
               if location
                 testcase[:failure] = message
@@ -116,19 +114,18 @@ class XcodeParser
             end
 
             puts "Extracting Artifacts for #{testcase[:name]}"
-            if test['summaryRef'] && test['summaryRef']['id']
-              testsummary = get_object(test['summaryRef']['id']['_value'])
-
-              if testsummary['activitySummaries'] && testsummary['activitySummaries']['_values']
-                testsummary['activitySummaries']['_values'].each do |activity|
-                  next unless activity['attachments'] && activity['attachments']['_values']
-
-                  activity['attachments']['_values'].each do |attachment|
-                    attachment_filename = attachment['filename']['_value']
-                    attachment_id = attachment['payloadRef']['id']['_value']
-                    extract_attachment(attachment_filename, attachment_id)
-                    testcase[:attachments] << { id: attachment_id, name: attachment_filename }
-                  end
+            summary_id = test.dig('summaryRef', 'id', '_value')
+            if summary_id
+              testsummary = get_object(summary_id)
+              activities = testsummary.dig('activitySummaries', '_values') || []
+              activities.each do |activity|
+                attachments = activity.dig('attachments', '_values') || []
+                attachments.each do |attachment|
+                  filename = attachment.dig('filename', '_value')
+                  attachment_id = attachment.dig('payloadRef', 'id', '_value')
+                  next unless filename && attachment_id
+                  extract_attachment(filename, attachment_id)
+                  testcase[:attachments] << { id: attachment_id, name: filename }
                 end
               end
             end
